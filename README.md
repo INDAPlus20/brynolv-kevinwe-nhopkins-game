@@ -1,4 +1,4 @@
-# [Game name here]
+# Anno 2020
 [Short desc]
 
 # Development
