@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Anno 2020
 [Short desc]
 
@@ -8,3 +9,7 @@ Each feature as a seperate pull-request to master. Must be reviewed by all membe
 @azraneth
 @brynolv
 @lucubrator
+=======
+# Branch exclusively for @brynolv
+Maybe write what your working on here?
+>>>>>>> Qt-base-project
