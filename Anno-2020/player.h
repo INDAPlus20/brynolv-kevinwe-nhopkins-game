@@ -1,0 +1,14 @@
+//
+// Created by Noah on 03/12/2020.
+//
+
+#ifndef BRYNOLV_KEVINWE_NHOPKINS_GAME_PLAYER_H
+#define BRYNOLV_KEVINWE_NHOPKINS_GAME_PLAYER_H
+
+
+class player {
+
+};
+
+
+#endif //BRYNOLV_KEVINWE_NHOPKINS_GAME_PLAYER_H
