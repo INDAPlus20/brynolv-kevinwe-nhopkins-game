@@ -15,6 +15,7 @@
 Map::Map(int size){
 	std::vector<std::vector<Tile*>> map(size, std::vector<Tile*>(size, new Tile()));
 	mapVector = map;
+	this->size=size;
 }
 /**
  * @brief Map::getTile
@@ -47,4 +48,37 @@ Tile::Tile(){
  */
 QString Tile::getDisplay(){
 	return QString("%1|%2").arg(*unit).arg(*building);
+}
+
+std::vector<Tile*> Map::getAdjacent(int r, int c){
+	//Rotate like the clock from 12-12, nullptr for the non-existant:
+	//(This should return tuples or otherwise coordinates, shouldn't it?
+	//Maybe...
+	std::vector<Tile*> neighburs(8,nullptr);
+	bool cm,rp,rm=false;
+	if (r>0){
+		neighburs[4]=mapVector[r-1][c];
+		rm=true;
+	}
+	if(c>0){
+		neighburs[6]=mapVector[r][c-1];
+		cm=true;
+		if(rm)
+			neighburs[5]=mapVector[r-1][c-1];
+	}
+	if(r<size){
+		neighburs[0]=mapVector[r+1][c];
+		if(cm)
+			neighburs[7]=mapVector[r+1][c-1];
+		rp=true;
+	}
+	if(c<size){
+		neighburs[2]=mapVector[r][c+1];
+		if(rm)
+			neighburs[3]=mapVector[r-1][c+1];
+		if(rp)
+			neighburs[1]=mapVector[r+1][c+1];
+	}
+
+	return neighburs;
 }

@@ -17,9 +17,11 @@ public:
 class Map{
 private:
 	std::vector<std::vector<Tile*>> mapVector;
+	int size;
 public:
 	Map(int);
 	Tile* getTile(int,int);
+	std::vector<Tile*> getAdjacent(int, int);
 };
 
 #endif // MAP_H
