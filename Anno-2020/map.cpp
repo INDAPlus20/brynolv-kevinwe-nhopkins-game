@@ -82,3 +82,17 @@ std::vector<Tile*> Map::getAdjacent(int r, int c){
 
 	return neighburs;
 }
+
+std::tuple<int,int> Map::getTileCoordinates(Tile* t){
+	for(int i=0;i<size;i++)
+		for(int j=0;j<size;j++)
+			if(t==mapVector[i][j])
+				return std::make_tuple(i,j);
+	//A tile that's not in the map? Something has gonn terribly wrong...
+	throw;
+}
+
+std::vector<Tile*> Map::getAdjacent(Tile* t){
+	auto tCoord=getTileCoordinates(t);
+	return getAdjacent(std::get<0>(tCoord),std::get<1>(tCoord));
+}

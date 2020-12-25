@@ -3,6 +3,7 @@
 #include <vector>
 #include <Qt>
 #include <QString>
+#include <tuple>
 
 class Tile{
 private:
@@ -22,6 +23,8 @@ public:
 	Map(int);
 	Tile* getTile(int,int);
 	std::vector<Tile*> getAdjacent(int, int);
+	std::vector<Tile*> getAdjacent(Tile*);
+	std::tuple<int,int> getTileCoordinates(Tile*);
 };
 
 #endif // MAP_H
