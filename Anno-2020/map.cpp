@@ -1,4 +1,5 @@
 #include "map.h"
+#include <utility>
 //#include <vector>
 
 /*Map::Tile{
@@ -95,4 +96,25 @@ std::tuple<int,int> Map::getTileCoordinates(Tile* t){
 std::vector<Tile*> Map::getAdjacent(Tile* t){
 	auto tCoord=getTileCoordinates(t);
 	return getAdjacent(std::get<0>(tCoord),std::get<1>(tCoord));
+}
+
+std::map<size_t,Tile*> Map::getAllTilesInRange(Tile* t,int range=1){
+	std::map<size_t,Tile*> collection;
+	std::hash<Tile*> tileHash;
+	auto r1=getAdjacent(t);
+	for(auto it=r1.begin();it!=r1.end();it++){
+		collection.insert(std::pair<size_t,Tile*>(tileHash(*it),*it));
+	}
+	if(range==1)
+		return collection;
+	//The below should be able to be done asynchronus, right?
+	//The below is also... not the fastest... As long as we never look more than
+	//1 or 2 tiles away, it should be *fine*, further than that rewrite this.
+	auto end=collection.end();
+	for(auto it=collection.begin();it!=end;it++){
+		auto insert=getAllTilesInRange(std::get<1>(*it),range-1);
+		for(auto in=insert.begin();in!=insert.end();in++)
+			collection.insert(*in);
+	}
+	return collection;
 }

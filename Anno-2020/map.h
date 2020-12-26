@@ -4,6 +4,7 @@
 #include <Qt>
 #include <QString>
 #include <tuple>
+#include <map>
 
 class Tile{
 private:
@@ -25,6 +26,7 @@ public:
 	std::vector<Tile*> getAdjacent(int, int);
 	std::vector<Tile*> getAdjacent(Tile*);
 	std::tuple<int,int> getTileCoordinates(Tile*);
+	std::map<size_t,Tile*> getAllTilesInRange(Tile*,int);
 };
 
 #endif // MAP_H
